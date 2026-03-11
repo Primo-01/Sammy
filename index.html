@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Sa'yo</title>
+    <title>Happy Monthsary</title>
 
     <style>
         body {
@@ -13,7 +13,7 @@
             background: linear-gradient(135deg, #ff9a9e, #fad0c4);
             height: 100vh;
             width: 100vw;
-            overflow: hidden; /* Prevents scrollbars on the main body */
+            overflow: hidden; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -31,10 +31,6 @@
             gap: 20px;
         }
 
-        h1 {
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
         button {
             padding: 15px 40px;
             font-size: 1.2rem;
@@ -47,21 +43,19 @@
             transition: transform 0.3s ease;
         }
 
-        button:hover {
-            transform: scale(1.1);
-        }
+        button:hover { transform: scale(1.1); }
 
-        /* Poem Container Overlay */
+        /* Poem Container */
         #poem {
-            display: none; /* Hidden initially */
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            overflow-y: auto; /* Allows scrolling inside if the poem is long */
+            overflow-y: auto;
             justify-content: center;
-            align-items: flex-start; /* Better for scrolling long text */
+            align-items: flex-start;
             padding: 40px 20px;
             box-sizing: border-box;
         }
@@ -74,7 +68,7 @@
             width: 100%;
             text-align: center;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            margin: auto; /* Centers the card when scrolling */
+            margin: auto;
             animation: fadeIn 1.5s ease;
         }
 
@@ -83,20 +77,9 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .container h1 {
-            color: #ff4d6d;
-            margin-bottom: 30px;
-            text-shadow: none;
-        }
+        .container h1 { color: #ff4d6d; margin-bottom: 30px; }
+        p { line-height: 2; font-size: 1.1rem; color: #444; margin-bottom: 25px; }
 
-        p {
-            line-height: 2;
-            font-size: 1.1rem;
-            color: #444;
-            margin-bottom: 25px;
-        }
-
-        /* Floating Hearts */
         .heart {
             position: fixed;
             bottom: -50px;
@@ -122,37 +105,37 @@
 
     <div id="poem">
         <div class="container">
-            <h1>Para Sa'yo</h1>
+            <h1>Para sa aking paraluman</h1>
             <p>Sa maikling oras na tayo’y nagtagpo,<br>
                 Parang matagal na kitang kilala.<br>
                 Sa bawat ngiti mong tahimik kong minamasdan,<br>
                 May mundong unti-unting nagiging buo.</p>
-
+            
             <p>Hindi pa man mahaba ang panahong magkasama,<br>
                 Sapat na iyon para malaman ko—<br>
                 Ikaw ang nais kong makasama sa bawat bukas,<br>
                 Sa bawat umaga, sa bawat dulo ng araw.</p>
-
+            
             <p>Hindi ko man alam kung paano ipapaliwanag,<br>
                 Kung bakit sa’yo ako agad napayapa.<br>
                 Parang sa gitna ng ingay ng mundo,<br>
                 Ikaw ang katahimikang hinahanap ng puso ko.</p>
-
+            
             <p>Kung darating ang unos o katahimikan,<br>
                 Handa akong manatili sa iyong tabi.<br>
                 Sa saya man o sa lungkot ng panahon,<br>
                 Hindi ako bibitiw, hindi ako lalayo.</p>
-
+            
             <p>Kung kailangan kong maghintay, magtiis, o lumaban,<br>
                 Gagawin ko nang walang pag-aalinlangan.<br>
                 Dahil ang tanging nais ng puso ko ngayon<br>
                 Ay makita kang masaya sa bawat pagkakataon.</p>
-
+            
             <p>At kung darating ang mga araw na mahirap,<br>
                 Ipapaalala ko sa’yo kung gaano ka kahalaga.<br>
                 Na sa simpleng pagdating mo sa buhay ko,<br>
                 Nagkaroon ng liwanag ang mga dating madilim na bahagi.</p>
-
+            
             <p>Dahil sa maikling panahong tayo’y nagkasama,<br>
                 May isang bagay akong sigurado—<br>
                 Kung papayagan ng tadhana at ng puso mo,<br>
@@ -160,37 +143,40 @@
         </div>
     </div>
 
-    <iframe id="music" width="0" height="0" src="" frameborder="0" allow="autoplay"></iframe>
+    <audio id="myAudio" loop>
+        <source src="tahanan.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-   <script>
-    function start() {
-        document.getElementById("startScreen").style.display = "none";
-        let poemSection = document.getElementById("poem");
-        poemSection.style.display = "flex";
+    <script>
+        function start() {
+            // Hide start screen and show poem
+            document.getElementById("startScreen").style.display = "none";
+            document.getElementById("poem").style.display = "flex";
 
-        // Start music: Tadhana by El Manu
-        // We use the embed link with autoplay and loop enabled
-        document.getElementById("music").src = "https://www.youtube.com/embed/XoBuaGgV80Y?autoplay=1&loop=1&playlist=XoBuaGgV80Y";
+            // Play the uploaded mp3
+            var audio = document.getElementById("myAudio");
+            audio.play().catch(function(error) {
+                console.log("Autoplay blocked or file not found:", error);
+            });
 
-        // Create hearts
-        for(let i = 0; i < 20; i++) {
-            setTimeout(createHeart, i * 300);
+            // Start heart animation
+            createHeart();
         }
-    }
 
-    function createHeart() {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-        heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
-        document.body.appendChild(heart);
-        
-        setTimeout(() => { heart.remove(); }, 6000);
-        setTimeout(createHeart, 800);
-    }
-</script>
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "❤";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+            document.body.appendChild(heart);
+            
+            setTimeout(() => { heart.remove(); }, 6000);
+            setTimeout(createHeart, 600); // Created slightly faster for better effect
+        }
+    </script>
 
 </body>
 </html>
