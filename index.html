@@ -162,36 +162,35 @@
 
     <iframe id="music" width="0" height="0" src="" frameborder="0" allow="autoplay"></iframe>
 
-    <script>
-        function start() {
-            document.getElementById("startScreen").style.display = "none";
-            let poemSection = document.getElementById("poem");
-            poemSection.style.display = "flex";
+   <script>
+    function start() {
+        document.getElementById("startScreen").style.display = "none";
+        let poemSection = document.getElementById("poem");
+        poemSection.style.display = "flex";
 
-            // Start music
-            document.getElementById("music").src = "https://www.youtube.com/embed/D9s7q7vP2Ck?autoplay=1&loop=1&playlist=D9s7q7vP2Ck";
+        // Start music: Tadhana by El Manu
+        // We use the embed link with autoplay and loop enabled
+        document.getElementById("music").src = "https://www.youtube.com/embed/XoBuaGgV80Y?autoplay=1&loop=1&playlist=XoBuaGgV80Y";
 
-            // Create hearts
-            for(let i = 0; i < 20; i++) {
-                setTimeout(createHeart, i * 300);
-            }
+        // Create hearts
+        for(let i = 0; i < 20; i++) {
+            setTimeout(createHeart, i * 300);
         }
+    }
 
-        function createHeart() {
-            const heart = document.createElement("div");
-            heart.className = "heart";
-            heart.innerHTML = "❤";
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-            heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
-            document.body.appendChild(heart);
-            
-            // Remove heart after animation
-            setTimeout(() => { heart.remove(); }, 6000);
-            // Continuous heart creation
-            setTimeout(createHeart, 800);
-        }
-    </script>
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+        heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+        document.body.appendChild(heart);
+        
+        setTimeout(() => { heart.remove(); }, 6000);
+        setTimeout(createHeart, 800);
+    }
+</script>
 
 </body>
 </html>
